@@ -18,3 +18,13 @@ dependencies {
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0-M1'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0-M1'
 }
+
+jar {
+    archiveName = "app.jar"
+    manifest {
+        attributes "Main-Class": "reference.App"
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
